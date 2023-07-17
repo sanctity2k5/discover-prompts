@@ -4,7 +4,7 @@ import Nav from '@/components/Nav';
 
 
 export const metadata = {
-  title: 'Gpt-Prompts',
+  title: 'Discover-Prompts',
   description: 'Discover and share AI prompts',
 }
  
