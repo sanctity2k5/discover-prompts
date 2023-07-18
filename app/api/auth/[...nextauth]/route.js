@@ -7,7 +7,8 @@ const handler = NextAuth({
     providers: [
         GoogleProvider({
             clientId: process.env.GOOGLE_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            redirectUri: "https://discover-prompts.vercel.app/api/auth/callback/google"
         })
     ],
     callbacks: {
