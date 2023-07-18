@@ -22,27 +22,27 @@ const handler = NextAuth({
             return session;
     
         }, 
-        async signIn({ profile }) {
-            try {
-                await connectToDB();
-        //Check if a user already exists in the database
-        const userExists = await User.findOne({ email: profile.email });
+        // async signIn({ profile }) {
+        //     try {
+        //         await connectToDB();
+        // //Check if a user already exists in the database
+        // const userExists = await User.findOne({ email: profile.email });
     
-        //If not create a new user in the database
-        if(!userExists){
-            await User.create({
-                email: profile.email,
-                username: profile.name.replace(" ", "").toLowerCase(),
-                image: profile.picture,
-            });
-        }
+        // //If not create a new user in the database
+        // if(!userExists){
+        //     await User.create({
+        //         email: profile.email,
+        //         username: profile.name.replace(" ", "").toLowerCase(),
+        //         image: profile.picture,
+        //     });
+        // }
     
-        return true;
-            } catch(error) {
-                console.log(error);
-                return false;
-            }
-        }
+        // return true;
+        //     } catch(error) {
+        //         console.log(error);
+        //         return false;
+        //     }
+        // }
 
     }
     
