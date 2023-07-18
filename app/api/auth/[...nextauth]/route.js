@@ -5,30 +5,10 @@ import User from '@/app/models/user';
 
 const handler = NextAuth({
     providers: [
-        process.env.VERCEL_ENV === "preview"
-        ? CredentialsProvider({
-            name: "Credentials",
-            credentials: {
-              username: {
-                label: "Username",
-                type: "text",
-                placeholder: "jsmith",
-              },
-              password: { label: "Password", type: "password" },
-            },
-            async authorize() {
-              return {
-                id: 1,
-                name: "J Smith",
-                email: "jsmith@example.com",
-                image: "https://i.pravatar.cc/150?u=jsmith@example.com",
-              }
-            },
-          })
-        : GoogleProvider({
+        GoogleProvider({
             clientId: process.env.GOOGLE_ID,
-            clientSecret: process.env.GOOGLE_SECRET,
-          }),
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET
+        })
     ],
     callbacks: {
 
