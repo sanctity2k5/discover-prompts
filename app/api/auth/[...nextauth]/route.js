@@ -6,7 +6,7 @@ import User from '@/app/models/user';
 const handler = NextAuth({
     providers: [
         GoogleProvider({
-            clientId: process.env.GOOGLE_ID,
+            clientId: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
             redirectUri: "https://discover-prompts.vercel.app/api/auth/callback/google"
         })
