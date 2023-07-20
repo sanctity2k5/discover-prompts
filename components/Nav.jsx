@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import logo from "@/public/assets/images/logo.png";
+import Github from "next-auth/providers/github";
 
 const Nav = () => {
   const { data: session } = useSession();
@@ -63,7 +64,7 @@ const Nav = () => {
                 <button
                   type="button"
                   key={provider.name}
-                  onClick={() => signIn(provider.id)}
+                  onClick={() => signIn(Github)}
                   className="black_btn"
                 >
                   Sign In
