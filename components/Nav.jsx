@@ -17,11 +17,10 @@ const Nav = () => {
       const response = await getProviders();
       setProviders(response);
     };
-    
+
     setUpProviders();
   }, []);
 
-  
   return (
     <nav className="flex-between w-full mb-16 pt-3 mt-12">
       <Link href="/" className="flex gap-2 flex-center">
@@ -34,7 +33,6 @@ const Nav = () => {
         />
         {/* <p className="logo_text">Gpt-Prompts</p> */}
       </Link>
-      
 
       {/* Desktop Navigation */}
       <div className="sm:flex hidden">
@@ -48,7 +46,7 @@ const Nav = () => {
             </button>
             <Link href="/profile">
               <Image
-                src="/assets/images/profile.svg"
+                src={session.user.image}
                 alt="profile"
                 className="rounded-full"
                 width={37}
@@ -78,33 +76,44 @@ const Nav = () => {
         {session?.user ? (
           <div className="flex">
             <Image
-              src="/assets/images/logo.svg"
+              src={session?.user.image}
               alt="profile"
               className="rounded-full"
               width={37}
               height={37}
-              onClick = {() => setToggleDropdown((prev) => !prev)}
+              onClick={() => setToggleDropdown((prev) => !prev)}
             />
 
-{toggleDropdown && (
-            <div className="dropdown">
-              <Link href="/profile"
-              className="dropdown-link"
-              onClick={() => setToggleDropdown(false)}
-              >
-              My Profile
-              </Link>
+            {toggleDropdown && (
+              <div className="dropdown">
+                <Link
+                  href="/profile"
+                  className="dropdown-link"
+                  onClick={() => setToggleDropdown(false)}
+                >
+                  My Profile
+                </Link>
 
-              <Link href="/create-prompt"
-              className="dropdown-link"
-              onClick={() => setToggleDropdown(false)}
-              >
-              Create Prompt
-              </Link>
+                <Link
+                  href="/create-prompt"
+                  className="dropdown-link"
+                  onClick={() => setToggleDropdown(false)}
+                >
+                  Create Prompt
+                </Link>
 
-              <button type="button" onClick={() => {setToggleDropdown(false); signOut()}} className="mt-3 w-full black_btn">Sign Out</button>
-            </div>
-          )}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setToggleDropdown(false);
+                    signOut();
+                  }}
+                  className="mt-3 w-full black_btn"
+                >
+                  Sign Out
+                </button>
+              </div>
+            )}
           </div>
         ) : (
           <>
