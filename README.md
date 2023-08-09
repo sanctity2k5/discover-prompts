@@ -1,1 +1,1 @@
-# gpt-prompts
+# discover-prompts
