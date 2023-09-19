@@ -69,6 +69,8 @@ const Nav = () => {
               ))}
           </>
         )}
+
+        <Link href="/chatgpt">chatGpt Test</Link>
       </div>
 
       {/* Mobile Navigation */}
