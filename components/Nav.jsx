@@ -33,6 +33,7 @@ const Nav = () => {
         />
         {/* <p className="logo_text">Gpt-Prompts</p> */}
       </Link>
+      <h1>Test CI/CD</h1>
 
       {/* Desktop Navigation */}
       <div className="sm:flex hidden">
