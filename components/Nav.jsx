@@ -1,11 +1,18 @@
-"use client";
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { signIn, signOut, useSession, getProviders } from "next-auth/react";
-import logo from "@/public/assets/images/logo.png";
+/* eslint-disable react/jsx-no-useless-fragment */
+/* eslint-disable react/react-in-jsx-scope */
 
-const Nav = () => {
+'use client';
+
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import {
+  signIn, signOut, useSession, getProviders,
+} from 'next-auth/react';
+// eslint-disable-next-line import/no-unresolved
+import logo from '@/public/assets/images/logo.png';
+
+function Nav() {
   const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
@@ -58,8 +65,8 @@ const Nav = () => {
           </div>
         ) : (
           <>
-            {providers &&
-              Object.values(providers).map((provider) => (
+            {providers
+              && Object.values(providers).map((provider) => (
                 <button
                   type="button"
                   key={provider.name}
@@ -121,8 +128,8 @@ const Nav = () => {
           </div>
         ) : (
           <>
-            {providers &&
-              Object.values(providers).map((provider) => (
+            {providers
+              && Object.values(providers).map((provider) => (
                 <button
                   type="button"
                   key={provider.name}
@@ -137,6 +144,6 @@ const Nav = () => {
       </div>
     </nav>
   );
-};
+}
 
 export default Nav;

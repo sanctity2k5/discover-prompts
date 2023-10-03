@@ -36,7 +36,7 @@
 
 //   return (
 //     <div className='w-[375px] bg-black flex flex-col justify-center items-center py-4 absolute mt-80'>
-      
+
 //       <div>
 //           {/* Display the response */}
 //           {response && (

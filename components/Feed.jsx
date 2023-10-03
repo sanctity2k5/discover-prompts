@@ -1,9 +1,10 @@
-"use client";
-import { useState, useEffect } from "react";
-import PromptCard from "./PromptCard";
-import Link from "next/link";
+'use client';
 
-const PromptCardList = ({ data, handleTagClick }) => {
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import PromptCard from './PromptCard';
+
+function PromptCardList({ data, handleTagClick }) {
   return (
     <div className="mt-16 prompt_layout">
       {data.map((post) => (
@@ -15,10 +16,10 @@ const PromptCardList = ({ data, handleTagClick }) => {
       ))}
     </div>
   );
-};
+}
 
-const Feed = () => {
-  const [searchText, setSearchText] = useState("");
+function Feed() {
+  const [searchText, setSearchText] = useState('');
   const [posts, setPosts] = useState([]);
   const [searchDropdown, setSearchDropdown] = useState(false);
   const [filteredPosts, setFilteredPosts] = useState([]);
@@ -28,15 +29,14 @@ const Feed = () => {
     const newSearchText = e.target.value;
     setSearchText(newSearchText);
 
-    if (newSearchText.trim() === "") {
+    if (newSearchText.trim() === '') {
       setFilteredPosts([]);
       setSearchDropdown(false);
     } else {
       setSearchDropdown(true);
       const filtered = currentTagFilter.filter(
-        (post) =>
-          post.tag &&
-          post.tag.toLowerCase().includes(newSearchText.toLowerCase())
+        (post) => post.tag
+          && post.tag.toLowerCase().includes(newSearchText.toLowerCase()),
       );
       setFilteredPosts(filtered);
       // console.log(filteredPosts)
@@ -45,26 +45,24 @@ const Feed = () => {
 
   const handleTagClick = (clickedTag) => {
     const postsWithClickedTag = currentTagFilter.filter(
-      (post) =>
-        post.tag &&
-        post.tag.toLowerCase() === clickedTag.toLowerCase()
+      (post) => post.tag
+        && post.tag.toLowerCase() === clickedTag.toLowerCase(),
     );
     // console.log(filteredPosts)
     setPosts(postsWithClickedTag);
     setSearchDropdown(false); // Close the search dropdown
   };
-  
+
   useEffect(() => {
     console.log(filteredPosts);
   }, [filteredPosts]);
-  
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch("/api/prompt/new");
+      const response = await fetch('/api/prompt/new');
       const data = await response.json();
       setPosts(data);
-      setCurrentTagFilter(data)
+      setCurrentTagFilter(data);
     };
     fetchPosts();
   }, []);
@@ -83,25 +81,24 @@ const Feed = () => {
       </form>
 
       {searchDropdown && (
-  <div className="w-full -mt-1 cursor-context-menu">
-    <div className="flex flex-col bg-white border border-gray-300 rounded-md">
-      {filteredPosts.map((post) => (
-        <div
-          className="w-full px-4 py-1 hover:bg-gray-200 text-black font-medium"
-          key={post._id}
-          onClick={() => handleTagClick(post.tag)}
-        >
-          {post.tag}
+      <div className="w-full -mt-1 cursor-context-menu">
+        <div className="flex flex-col bg-white border border-gray-300 rounded-md">
+          {filteredPosts.map((post) => (
+            <div
+              className="w-full px-4 py-1 hover:bg-gray-200 text-black font-medium"
+              key={post._id}
+              onClick={() => handleTagClick(post.tag)}
+            >
+              {post.tag}
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
-  </div>
-)}
-
+      </div>
+      )}
 
       <PromptCardList data={posts} handleTagClick={handleTagClick} />
     </section>
   );
-};
+}
 
 export default Feed;
